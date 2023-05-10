@@ -23,4 +23,7 @@ kubectl describe pod mysql-0
 kubectl logs -f mysql-0
 # 状态
 kubectl get statefulset.apps/mysql
+
+# 执行命令 
+kubectl exec -it mysql-0 -- mysql -uroot -p
 ```
