@@ -20,14 +20,15 @@ env:
   USER_NAME: liubin95
   CONTEXT: mysql
 
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
 jobs:
 
   docker:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
 
     steps:
       - name: Checkout repository
@@ -46,7 +47,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ env.USER_NAME }}
-          password: ${{ secrets.PACKAGES_TOKEN  }}
+          password: ${{ secrets.GITHUB_TOKEN  }}
 
       - name: Extract Docker metadata
         id: meta
