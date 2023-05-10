@@ -31,9 +31,37 @@ kubectl run busybox2 --image=busybox --restart=Never --sleep 3600
 
 ```
 
+## kubectl apply
+
+```shell
+kubectl apply -f busybox.yaml
+
+```
+
 ## kubectl describe
 
 ```shell
+# kubectl describe TYPE name
+# type = pod, service, deployment, node, namespace，pv, pvc
 kubectl describe pod -n kube-system coredns-5d78c9869d-9dw9h
+
+```
+
+## kubeclt exec
+
+```shell
+# kubectl exec [-it] POD [-c CONTAINER] -- COMMAND [args...]
+# -i: 允许你对容器内的标准输入 (STDIN) 进行交互
+# -t: 允许你使用终端 (TTY)
+kubectl exec -it -n kube-system coredns-5d78c9869d-9dw9h -- /bin/sh
+
+```
+
+## kubectl delete
+
+```shell
+# kubectl delete TYPE NAME
+# type = pod, service, deployment, node, namespace，pv, pvc
+kubectl delete pod -n kube-system coredns-5d78c9869d-9dw9h
 
 ```
