@@ -22,7 +22,7 @@ spec:
             claimName: mysql-pvc
       containers:
         - name: mysql
-          image: liubin/mysql
+          image: ghcr.io/liubin95/liubin/mysql
           ports:
             - containerPort: 3306
               name: mysql
