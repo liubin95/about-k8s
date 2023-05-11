@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: generate-article
+spec:
+  template:
+    spec:
+      containers:
+        - name: generate-article
+          image: ghcr.io/liubin95/liubin/generate-article
+          env:
+            - name: MYSQL_HOST
+              value: mysql
+      restartPolicy: Never
+
+
