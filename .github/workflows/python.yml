@@ -58,7 +58,7 @@ jobs:
           flavor: |
             latest=auto
           tags: |
-            type=semver,pattern={{version}},value=${{ github.event.inputs.version }}
+            type=semver,pattern={{version}},value=${{ inputs.version }}
 
       - name: Build and push Docker image
         id: build-and-push
