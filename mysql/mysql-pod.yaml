@@ -29,6 +29,9 @@ spec:
               subPath: mysql.conf
             - name: mysql-data
               mountPath: /var/lib/mysql
+          ports:
+            - containerPort: 3306
+              name: mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
