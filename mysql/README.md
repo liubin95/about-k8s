@@ -1,8 +1,5 @@
-## secret
+## [secret](../secret/README.md)
 
-```shell
-kubectl create secret generic mysql-pass --from-literal=password=YOUR_PASSWORD
-```
 
 ## configMap
 

@@ -23,9 +23,6 @@ spec:
       containers:
         - name: mysql
           image: ghcr.io/liubin95/liubin/mysql
-          ports:
-            - containerPort: 3306
-              name: mysql
           volumeMounts:
             - name: mysql-master-config
               mountPath: /etc/mysql/mysql.conf
