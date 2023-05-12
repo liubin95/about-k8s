@@ -23,14 +23,7 @@ date -R
 
 echo '时区 done'
 
-# 升级firewalld
-yum update -y firewalld
-# 局域网放行
-sudo firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="192.168.50.0/24" port protocol="tcp" port="2000-30000" accept' --permanent
-sudo firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="192.168.50.0/24" port protocol="udp" port="2000-30000" accept' --permanent
-# 重新加载防火墙配置
-sudo firewall-cmd --reload
-
+systemctl disable --now firewalld
 echo 'firewall done'
 
 swapoff -a
