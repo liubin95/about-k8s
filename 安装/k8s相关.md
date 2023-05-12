@@ -48,7 +48,7 @@ cgroupDriver: systemd
 ## 初始化集群
 
 ```shell
-kubeadm init --cluster-cidr=10.244.0.0/16 --config /etc/kubeadm-config.yaml
+kubeadm init --pod-network-cidr=10.244.0.0/16
 #  if you are the root user, you can run:
 # 写入环境变量
 export KUBECONFIG=/etc/kubernetes/admin.conf
@@ -81,9 +81,13 @@ kubectl get pods --all-namespaces
 ## 设置k8s 命令补全
 
 ```shell
-yum install bash-completion
+yum install -y bash-completion
 curl -o /usr/share/bash-completion/completions/kubectl https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/kubectl.sh
 source /usr/share/bash-completion/bash_completion
 echo 'source <(kubectl completion bash)' >>~/.bashrc
 source ~/.bashrc
+```
+
+```shell
+source <(kubectl completion zsh)
 ```
