@@ -4,10 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pymysql = "*"
 requests = "*"
 
 [dev-packages]
 
 [requires]
 python_version = "3.9"
+
+[packages.pymysql]
+extras = [ "rsa"]
