@@ -71,7 +71,7 @@ if __name__ == "__main__":
                          database="big_three")
     cursor = db.cursor()
     for title in title_list:
-        id_article = time.time()
+        id_article = time.time_ns()
         article = write_article(title)
         print(title)
         print(article)
