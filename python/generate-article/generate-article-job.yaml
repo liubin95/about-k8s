@@ -3,6 +3,8 @@ kind: Job
 metadata:
   name: generate-article
 spec:
+  parallelism: 1
+  completions: 1
   template:
     spec:
       containers:
