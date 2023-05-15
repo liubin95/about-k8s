@@ -70,11 +70,9 @@ if __name__ == "__main__":
                          password="big_three",
                          database="big_three")
     cursor = db.cursor()
+    id_article = time.time()
     for title in title_list:
-        id_article = time.time_ns()
         article = write_article(title)
-        print(title)
-        print(article)
         cursor.execute(f"""
         INSERT INTO big_three.article_info
         (id, title, author_id, release_time, type_id, visit_num, comment_num, pay_kiss, cream, stick, is_done, markdown_content, html_content, state, create_time, create_user, update_time, update_user)
@@ -90,6 +88,8 @@ if __name__ == "__main__":
             article,
             time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         ))
+        print(cursor._last_executed)
+        id_article = id_article + 1
         if os.environ.get('ES_HOST'):
             res = requests.post(f"http://{os.environ.get('ES_HOST')}:9200/article-search/_doc", json={
                 "id": id_article,
