@@ -31,6 +31,10 @@ if ! zplug check --verbose; then
     fi
 fi
 zplug load
+
+source <(kubectl completion zsh)
+
+alias lla='ll -a'
 EOF
 
 source ~/.zshrc
