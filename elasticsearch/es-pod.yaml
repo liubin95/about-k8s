@@ -12,6 +12,9 @@ spec:
   serviceName: es-service
   replicas: 3
   template:
+    metadata:
+      labels:
+        app: es
     spec:
       volumes:
         - name: es-data
