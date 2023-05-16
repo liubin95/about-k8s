@@ -29,6 +29,7 @@ spec:
             - name: mysql-master-config
               mountPath: /etc/mysql/mysql.conf
               subPath: mysql.conf
+              readOnly: true
             - name: mysql-data
               mountPath: /var/lib/mysql
           ports:
