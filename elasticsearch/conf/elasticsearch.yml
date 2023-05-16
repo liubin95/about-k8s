@@ -13,5 +13,5 @@ bootstrap:
 ingest.geoip.downloader.enabled: false # disable geoip downloader
 xpack.security.enabled: true # enable xpack security
 
-discovery.seed_hosts: es-0.es-headless.default.svc.cluster.local,es-1.es-headless.default.svc.cluster.local
-cluster.initial_master_nodes: es-0,es-1
+discovery.seed_hosts: es-0.es-service.default.svc.cluster.local,es-1.es-service.default.svc.cluster.local,es-2.es-service.default.svc.cluster.local
+cluster.initial_master_nodes: es-0,es-1,es-2

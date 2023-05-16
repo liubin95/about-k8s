@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: es-service
 spec:
+  clusterIP: none
   selector:
     app: es
   ports:
