@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: es
+  labels:
+    app: es
+
+spec:
+  selector:
+    matchLabels:
+      app: es
+  serviceName: es-service
+  template:
+    spec:
+      volumes:
+        - name: es-data
+          persistentVolumeClaim:
+            claimName: es-pvc
+        - name: es-config
+          configMap:
+            name: es-config
+        - name: es-jvm-config
+          configMap:
+            name: es-jvm-config
+      containers:
+        - name: es
+          image: ghcr.io/liubin95/liubin/elasticsearch
+          ports:
+            - containerPort: 9200
+              name: http
+            - containerPort: 9300
+              name: transport
+          env:
+            - name: ELASTIC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-pass
+                  key: es-pass
+          volumeMounts:
+            - mountPath: /usr/share/elasticsearch/data
+              name: es-data
+            - mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
+              subPath: elasticsearch.yml
+              name: es-config
+              readOnly: true
+            - mountPath: /usr/share/elasticsearch/config/jvm.options
+              subPath: jvm.options
+              name: es-jvm-config
+              readOnly: true
+
+
