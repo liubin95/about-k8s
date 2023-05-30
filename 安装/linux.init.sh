@@ -54,14 +54,9 @@ nerdctl run hello-world
 
 echo 'nerdctl done'
 
-cat <<EOF | tee /etc/containerd/config.toml
-disabled_plugins = ["zfs", "devmapper"]
-[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
-[plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
-SystemdCgroup = true
-[plugins."io.containerd.grpc.v1.cri"]
-sandbox_image = "registry.k8s.io/pause:3.2"
-EOF
+containerd config default > /etc/containerd/config.toml
+sed -i 's/systemd_cgroup = false/systemd_cgroup = true/' /etc/containerd/config.toml
+sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
 
 systemctl restart containerd
 
