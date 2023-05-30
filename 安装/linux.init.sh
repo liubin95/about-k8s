@@ -47,15 +47,26 @@ systemctl enable --now containerd
 
 echo 'containerd done'
 
+# cni 插件
+mkdir -p /opt/cni/bin
+wget https://github.com/containernetworking/plugins/releases/download/v1.3.0/cni-plugins-linux-amd64-v1.3.0.tgz
+tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.3.0.tgz
+echo 'cni done'
 
-wget https://github.com/containerd/nerdctl/releases/download/v1.3.1/nerdctl-full-1.3.1-linux-amd64.tar.gz
-tar -xzvf nerdctl-full-1.3.1-linux-amd64.tar.gz -C /usr/local
+# 仅限 nerdctl
+wget https://github.com/containerd/nerdctl/releases/download/v1.3.1/nerdctl-1.3.1-linux-amd64.tar.gz
+tar Cxzvvf /usr/local/bin nerdctl-1.3.1-linux-amd64.tar.gz
 nerdctl run hello-world
+echo 'nerdctl mini done'
 
-echo 'nerdctl done'
+# 包含containerd、runc、CNI等依赖
+# yum install 包含runc
+# wget https://github.com/containerd/nerdctl/releases/download/v1.3.1/nerdctl-full-1.3.1-linux-amd64.tar.gz
+# tar -xzvf nerdctl-full-1.3.1-linux-amd64.tar.gz -C /usr/local
+# nerdctl run hello-world
+# echo 'nerdctl full done'
 
 containerd config default > /etc/containerd/config.toml
-sed -i 's/systemd_cgroup = false/systemd_cgroup = true/' /etc/containerd/config.toml
 sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
 
 systemctl restart containerd

@@ -64,7 +64,7 @@ kubeadm join 192.168.50.222:6443 --token token \
 ## 网络插件
 
 ```yaml
-# cni 插件已经在nerdctl安装过了
+# cni 插件已经在nerdctl安装过了 (可选)
 # 需要修改一下默认的位置
 env:
   - name: CNI_BIN_DIR
