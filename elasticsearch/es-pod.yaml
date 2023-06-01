@@ -47,7 +47,7 @@ spec:
               readOnly: true
             - mountPath: /usr/share/elasticsearch/config/jvm.options
               subPath: jvm.options
-              name: es-jvm-config
+              name: es-config
               readOnly: true
 
 
