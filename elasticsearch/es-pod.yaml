@@ -38,6 +38,8 @@ spec:
                 secretKeyRef:
                   name: my-pass
                   key: comm-pass
+            - name: TAKE_FILE_OWNERSHIP
+              value: "true"
           volumeMounts:
             - mountPath: /usr/share/elasticsearch/data
               name: es-data
