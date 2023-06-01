@@ -29,3 +29,4 @@ data:
   jvm.options: |
     -Xms512m
     -Xmx512m
+    -XX:+UseParallelGC
