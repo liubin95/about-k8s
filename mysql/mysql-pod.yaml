@@ -19,7 +19,7 @@ spec:
       volumes:
         - name: mysql-master-config
           configMap:
-            name: mysql-master-config
+            name: mysql-config
         - name: mysql-data
           persistentVolumeClaim:
             claimName: mysql-pvc
@@ -29,7 +29,7 @@ spec:
           volumeMounts:
             - name: mysql-master-config
               mountPath: /etc/mysql/mysql.conf
-              subPath: mysql.conf
+              subPath: master.cnf
               readOnly: true
             - name: mysql-data
               mountPath: /var/lib/mysql
