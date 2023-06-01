@@ -10,3 +10,5 @@ spec:
     - name: mysql
       port: 3306
       targetPort: 3306
+  # 成员提供稳定的 DNS 表项的无头服务（Headless Service）
+  clusterIP: None

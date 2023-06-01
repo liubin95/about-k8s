@@ -5,6 +5,7 @@ metadata:
   namespace: liubin
   labels:
     app: mysql
+
 data:
   master.cnf: |
     [mysqld]
@@ -22,4 +23,14 @@ data:
     enforce-gtid-consistency=ON
     sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
 
-  s
+  slave.cnf: |
+    [mysqld]
+    # 从服务器唯一ID
+    server-id=2
+    # 启用 GTID 模式
+    gtid_mode=ON
+    # 启用 GTID 模式
+    enforce-gtid-consistency=ON
+    # 副本服务器上禁用二进制日志记录
+    log-slave-updates=OFF
+    sql_mode="STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
