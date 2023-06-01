@@ -40,6 +40,10 @@ spec:
                   key: comm-pass
             - name: TAKE_FILE_OWNERSHIP
               value: "true"
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
           volumeMounts:
             - mountPath: /usr/share/elasticsearch/data
               name: es-data
