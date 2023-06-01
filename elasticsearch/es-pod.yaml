@@ -23,9 +23,6 @@ spec:
         - name: es-config
           configMap:
             name: es-config
-        - name: es-jvm-config
-          configMap:
-            name: es-jvm-config
       containers:
         - name: es
           image: ghcr.io/liubin95/liubin/elasticsearch
@@ -39,7 +36,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: my-pass
-                  key: es-pass
+                  key: comm-pass
           volumeMounts:
             - mountPath: /usr/share/elasticsearch/data
               name: es-data

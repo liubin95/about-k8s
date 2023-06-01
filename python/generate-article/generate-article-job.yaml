@@ -15,7 +15,9 @@ spec:
           image: ghcr.io/liubin95/liubin/generate-article
           env:
             - name: MYSQL_HOST
-              value: mysql-service.default.svc.cluster.local
+              value: mysql-service.liubin.svc.cluster.local
+            - name: ES_HOST
+              value: es-service.liubin.svc.cluster.local
       restartPolicy: Never
 
 

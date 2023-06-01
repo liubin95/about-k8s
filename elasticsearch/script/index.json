@@ -1,0 +1,67 @@
+{
+  "settings": {
+    "index": {
+      "number_of_shards": "3",
+      "number_of_replicas": "2",
+      "analysis": {
+        "analyzer": {
+          "ikSearchAnalyzer": {
+            "type": "custom",
+            "tokenizer": "ik_max_word"
+          },
+          "pinyinSimpleIndexAnalyzer": {
+            "tokenizer": "pinyin_word"
+          }
+        },
+        "tokenizer": {
+          "pinyin_word": {
+            "type": "pinyin",
+            "first_letter": "prefix",
+            "padding_char": " ",
+            "keep_first_letter": true,
+            "keep_separate_first_letter": true,
+            "keep_full_pinyin": true,
+            "keep_original": false,
+            "limit_first_letter_length": 16,
+            "lowercase": true,
+            "ignore_pinyin_offset": false
+          }
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "title": {
+        "type": "text",
+        "analyzer": "ikSearchAnalyzer",
+        "search_analyzer": "ikSearchAnalyzer",
+        "fields": {
+          "pinyin": {
+            "type": "text",
+            "analyzer": "pinyinSimpleIndexAnalyzer",
+            "search_analyzer": "pinyinSimpleIndexAnalyzer",
+            "term_vector": "with_offsets"
+          }
+        }
+      },
+      "markdownContent": {
+        "type": "text",
+        "analyzer": "ikSearchAnalyzer",
+        "search_analyzer": "ikSearchAnalyzer",
+        "fields": {
+          "pinyin": {
+            "type": "text",
+            "analyzer": "pinyinSimpleIndexAnalyzer",
+            "search_analyzer": "pinyinSimpleIndexAnalyzer"
+          }
+        }
+      },
+      "createTime": {
+        "type": "date",
+        "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+      }
+    }
+  }
+}
+
