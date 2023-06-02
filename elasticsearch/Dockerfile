@@ -17,7 +17,7 @@ RUN bin/elasticsearch-certutil ca --out /usr/share/elasticsearch/config/certs/el
 RUN bin/elasticsearch-certutil cert --in /usr/share/elasticsearch/config/certs/cert_options.yml --ca /usr/share/elasticsearch/config/certs/elastic-stack-ca.p12 --ca-pass "123456" --pass "123456" --out /usr/share/elasticsearch/config/certs/elastic-certificates.p12 --silent
 
 # Change the ownership and permissions of the certificate files
-RUN chown elasticsearch:elasticsearch /usr/share/elasticsearch/config/certs/*
+RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/config/certs
 RUN chmod 600 /usr/share/elasticsearch/config/certs/*
 # Switch back to the elasticsearch user
 USER elasticsearch
