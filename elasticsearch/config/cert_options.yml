@@ -1,0 +1,8 @@
+instances:
+  - name: "elasticsearch"
+    dns:
+      - "es-0.es-service.liubin.svc.cluster.local"
+      - "es-1.es-service.liubin.svc.cluster.local"
+      - "es-2.es-service.liubin.svc.cluster.local"
+      - "localhost"
+    filename: "elastic-certificates"

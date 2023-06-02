@@ -5,7 +5,16 @@ echo 'vm.max_map_count=262144' >>/etc/sysctl.conf
 sysctl -w vm.max_map_count=262144
 
 ```
+```shell
+# k8s 设置端口转发
+kubectl port-forward -n liubin svc/es-service 9200:9200 &
+# 试试
+curl -u elastic:cde3vfr4 localhost:9200
 
+# 使用 index.json 创建index
+curl -X PUT -u elastic:cde3vfr4 "localhost:9200/article-search/index?pretty" -H 'Content-Type: application/json' -d @index.json
+
+```
 ## ECK
 
 ### 简介

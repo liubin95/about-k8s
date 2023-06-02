@@ -92,7 +92,8 @@ if __name__ == "__main__":
             res = requests.post(f"http://{os.environ.get('ES_HOST')}:9200/article-search/_doc", json={
                 "id": id_article,
                 "title": title,
-                "htmlContent": article
+                "markdownContent": article,
+                "createTime": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             })
             print(res)
         id_article = id_article + 1
