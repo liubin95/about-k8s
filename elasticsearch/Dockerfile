@@ -15,7 +15,7 @@ USER root
 COPY config/cert_options.yml /usr/share/elasticsearch/config/certs/cert_options.yml
 # Run the elasticsearch-certutil command to generate certificates
 RUN bin/elasticsearch-certutil ca --out /usr/share/elasticsearch/config/certs/elastic-stack-ca.p12 --pass "" --silent
-RUN bin/elasticsearch-certutil cert --in /usr/share/elasticsearch/config/certs/cert_options.yml --ca /usr/share/elasticsearch/config/certs/elastic-stack-ca.p12 --pass "" --out /usr/share/elasticsearch/config/certs/elastic-certificates.p12 --silent
+RUN bin/elasticsearch-certutil cert --in /usr/share/elasticsearch/config/certs/cert_options.yml --ca /usr/share/elasticsearch/config/certs/elastic-stack-ca.p12 --ca-pass "" --pass "" --out /usr/share/elasticsearch/config/certs/elastic-certificates.p12 --silent
 
 # Switch back to the elasticsearch user
 USER elasticsearch
