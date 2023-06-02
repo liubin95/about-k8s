@@ -23,12 +23,13 @@ data:
       system_call_filter: false
     ingest.geoip.downloader.enabled: false # disable geoip downloader
     xpack.security.enabled: true # enable xpack security
+    xpack.security.transport.ssl.enabled: true # enable xpack security transport ssl
     
-    discovery.seed_hosts: 
+    discovery.seed_hosts:
       - "es-0.es-service.liubin.svc.cluster.local"
       - "es-1.es-service.liubin.svc.cluster.local"
       - "es-2.es-service.liubin.svc.cluster.local"
-    cluster.initial_master_nodes: 
+    cluster.initial_master_nodes:
       - "es-0"
       - "es-1"
       - "es-2"
