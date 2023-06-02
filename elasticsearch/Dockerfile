@@ -13,8 +13,8 @@ USER root
 # Copy the cert_options.yml file into the Docker image
 COPY config/cert_options.yml /usr/share/elasticsearch/config/certs/cert_options.yml
 # Run the elasticsearch-certutil command to generate certificates
-RUN bin/elasticsearch-certutil ca --out /usr/share/elasticsearch/config/certs/elastic-stack-ca.p12 --pass "" --silent
-RUN bin/elasticsearch-certutil cert --in /usr/share/elasticsearch/config/certs/cert_options.yml --ca /usr/share/elasticsearch/config/certs/elastic-stack-ca.p12 --ca-pass "" --pass "" --out /usr/share/elasticsearch/config/certs/elastic-certificates.p12 --silent
+RUN bin/elasticsearch-certutil ca --out /usr/share/elasticsearch/config/certs/elastic-stack-ca.p12 --pass "123456" --silent
+RUN bin/elasticsearch-certutil cert --in /usr/share/elasticsearch/config/certs/cert_options.yml --ca /usr/share/elasticsearch/config/certs/elastic-stack-ca.p12 --ca-pass "123456" --pass "123456" --out /usr/share/elasticsearch/config/certs/elastic-certificates.p12 --silent
 
 # Change the ownership and permissions of the certificate files
 RUN chown elasticsearch:elasticsearch /usr/share/elasticsearch/config/certs/*

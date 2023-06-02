@@ -31,10 +31,10 @@ data:
             verification_mode: certificate # enable xpack security transport ssl verification mode
             keystore:
               path: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
-              password: ""
+              password: "123456"
             truststore:
               path: /usr/share/elasticsearch/config/certs/elastic-stack-ca.p12
-              password: ""
+              password: "123456"
     
     discovery.seed_hosts:
       - "es-0.es-service.liubin.svc.cluster.local"
