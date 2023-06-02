@@ -32,6 +32,9 @@
   },
   "mappings": {
     "properties": {
+      "id": {
+        "type": "long"
+      },
       "title": {
         "type": "text",
         "analyzer": "ikSearchAnalyzer",
