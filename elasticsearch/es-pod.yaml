@@ -27,6 +27,9 @@ spec:
         - name: es-certs
           secret:
             secretName: my-pass
+            items:
+              - key: elastic-certificates.p12
+                path: elastic-certificates.p12
       containers:
         - name: es
           image: ghcr.io/liubin95/liubin/elasticsearch:1.0.2
@@ -63,9 +66,8 @@ spec:
               subPath: jvm.options
               name: es-config
               readOnly: true
-            - mountPath: /usr/share/elasticsearch/config/elastic-certificates.p12
+            - mountPath: /usr/share/elasticsearch/config
               name: es-certs
               readOnly: true
-              subPath: elastic-certificates.p12
 
 
