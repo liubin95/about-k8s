@@ -15,6 +15,17 @@ curl -u elastic:cde3vfr4 localhost:9200
 curl -X PUT -u elastic:cde3vfr4 "localhost:9200/article-search/index?pretty" -H 'Content-Type: application/json' -d @index.json
 
 ```
+## ssl
+```shell
+# 生成ca
+elasticsearch-certutil ca --out ./elastic-stack-ca.p12
+# 
+elasticsearch-certutil cert --in cert_options.yml --ca elastic-stack-ca.p12
+# unzip
+unzip certificate-bundle.zip
+# base 64
+base64 -i elastic-certificates.p12 -o elastic-certificates.p12.base64
+```
 ## ECK
 
 ### 简介

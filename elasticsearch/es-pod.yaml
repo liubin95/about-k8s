@@ -32,7 +32,7 @@ spec:
                 path: elastic-certificates.p12
       containers:
         - name: es
-          image: ghcr.io/liubin95/liubin/elasticsearch:1.0.2
+          image: ghcr.io/liubin95/liubin/elasticsearch:1.0.3
           ports:
             - containerPort: 9200
               name: http
@@ -44,11 +44,6 @@ spec:
                 secretKeyRef:
                   name: my-pass
                   key: comm-pass
-            - name: CERTS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: my-pass
-                  key: elasticsearch-certs-password
             - name: TAKE_FILE_OWNERSHIP
               value: "true"
             - name: POD_NAME
