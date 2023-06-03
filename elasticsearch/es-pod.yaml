@@ -63,7 +63,7 @@ spec:
               subPath: jvm.options
               name: es-config
               readOnly: true
-            - mountPath: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+            - mountPath: /usr/share/elasticsearch/config/elastic-certificates.p12
               name: es-certs
               readOnly: true
               subPath: elastic-certificates.p12
