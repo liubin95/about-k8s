@@ -24,9 +24,12 @@ spec:
         - name: es-config
           configMap:
             name: es-config
+        - name: es-certs
+          secret:
+            secretName: my-pass
       containers:
         - name: es
-          image: ghcr.io/liubin95/liubin/elasticsearch
+          image: ghcr.io/liubin95/liubin/elasticsearch:1.0.2
           ports:
             - containerPort: 9200
               name: http
@@ -38,6 +41,11 @@ spec:
                 secretKeyRef:
                   name: my-pass
                   key: comm-pass
+            - name: CERTS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-pass
+                  key: elasticsearch-certs-password
             - name: TAKE_FILE_OWNERSHIP
               value: "true"
             - name: POD_NAME
@@ -55,5 +63,9 @@ spec:
               subPath: jvm.options
               name: es-config
               readOnly: true
+            - mountPath: /usr/share/elasticsearch/config/certs/elastic-certificates.p12
+              name: es-certs
+              readOnly: true
+              subPath: elastic-certificates.p12
 
 
