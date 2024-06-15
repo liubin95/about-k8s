@@ -64,6 +64,15 @@ sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.to
 systemctl restart containerd
 echo 'containerd config done'
 
+VERSION="v1.26.0" # check latest version in /releases page
+curl -L https://github.com/kubernetes-sigs/cri-tools/releases/download/$VERSION/crictl-${VERSION}-linux-amd64.tar.gz --output crictl-${VERSION}-linux-amd64.tar.gz
+tar zxvf crictl-$VERSION-linux-amd64.tar.gz -C /usr/local/bin
+rm -f crictl-$VERSION-linux-amd64.tar.gz
+echo 'crictl done'
+
+dnf -y install conntrack socat
+echo 'conntrack  socat done'
+
 RELEASE="v1.30.2"
 ARCH="amd64"
 DOWNLOAD_DIR="/usr/local/bin"
