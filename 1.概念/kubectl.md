@@ -47,13 +47,15 @@ kubectl describe pod -n kube-system coredns-5d78c9869d-9dw9h
 
 ```
 
-## kubeclt exec
+## kubectl exec
 
 ```shell
 # kubectl exec [-it] POD [-c CONTAINER] -- COMMAND [args...]
 # -i: 允许你对容器内的标准输入 (STDIN) 进行交互
 # -t: 允许你使用终端 (TTY)
-kubectl exec -it -n kube-system coredns-5d78c9869d-9dw9h -- /bin/sh
+kubectl exec -it -n default nginx-deployment-77688dbb55-4m78s -- /bin/sh
+
+kubectl exec -it -n light es-master-test -- /bin/sh
 
 ```
 
