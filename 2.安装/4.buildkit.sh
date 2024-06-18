@@ -1,11 +1,7 @@
-# container
+#!/bin/bash
 
-## buildkit
-
-containerd 只是容器运行时，所以没有build功能，需要使用buildkit来build镜像
-
-```shell
-# 安装
+# containerd 只是容器运行时，所以没有build功能，需要使用buildkit来build镜像
+# 一个机器安装就行
 VERSION=0.14.0
 
 wget https://github.com/moby/buildkit/releases/download/v${VERSION}/buildkit-v${VERSION}.linux-amd64.tar.gz
@@ -15,4 +11,5 @@ curl -L --remote-name-all https://raw.githubusercontent.com/moby/buildkit/master
 cp buildkit.service buildkit.socket /etc/systemd/system/
 systemctl daemon-reload
 systemctl enable --now buildkit
-```
+buildctl -v
+echo -e "\033[32m buildkit deno \033[0m"

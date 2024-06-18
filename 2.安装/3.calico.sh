@@ -13,6 +13,13 @@ EOF
 
 # install
 VERSION=3.28.0
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v${VERSION}/manifests/tigera-operator.yaml
+# 自定义资源文件
+curl -O https://raw.githubusercontent.com/projectcalico/calico/v${VERSION}/manifests/tigera-operator.yaml
+k create -f tigera-operator.yaml
+# 部署文件
+curl -O https://raw.githubusercontent.com/projectcalico/calico/v${VERSION}/manifests/custom-resources.yaml
+k create -f custom-resources.yaml
 
-watch kubectl get pods -n calico-system
+
+# 安装之后 dns 服务会启动
+watch 'kubectl get pods -A | grep -E "calico|dns"'

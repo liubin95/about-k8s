@@ -87,3 +87,10 @@ curl -sSL "https://raw.githubusercontent.com/kubernetes/release/${RELEASE_VERSIO
 systemctl enable --now kubelet
 echo -e "\033[32m kube deno \033[0m"
 
+mkdir -p /etc/NetworkManager/conf.d
+# 输入到文件
+cat <<EOF > /etc/NetworkManager/conf.d/calico.conf
+[keyfile]
+unmanaged-devices=interface-name:cali*;interface-name:tunl*;interface-name:vxlan.calico;interface-name:vxlan-v6.calico;interface-name:wireguard.cali;interface-name:wg-v6.cali
+EOF
+echo -e "\033[32m calico config deno \033[0m"
