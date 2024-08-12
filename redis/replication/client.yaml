@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-client
+  labels:
+    role: redis-client
+spec:
+  containers:
+  - name: redis-client
+    image: redis-client:v1.0.0
+    imagePullPolicy: Never
+

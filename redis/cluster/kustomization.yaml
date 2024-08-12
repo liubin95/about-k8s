@@ -1,0 +1,15 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+namespace: default
+
+resources:
+- ./redis.svc.yaml
+- ./redis.state.yaml
+
+configMapGenerator:
+- name: redis-conf
+  files:
+  - ./redis.conf
+
+generatorOptions:
+  disableNameSuffixHash: true

@@ -1,0 +1,22 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+namespace: default
+
+resources:
+- ./master.yaml
+- ./replication-1.yaml
+- ./replication-2.yaml
+
+configMapGenerator:
+- name: master-conf
+  files:
+  - ./config/master.conf
+- name: replica-conf
+  files:
+  - ./config/replica.conf
+- name: sentinel-conf
+  files:
+  - ./config/sentinel.conf
+
+generatorOptions:
+  disableNameSuffixHash: true

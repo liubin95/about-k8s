@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cluster-create
+spec:
+  template:
+    spec:
+      containers:
+      - name: cluster-create
+        image: redis:7.4.0-alpine
+        command: ["redis-cli" ,"--cluster" ,"create"]
+        args:
+          - redis-0.redis-headless:6379
+          - redis-1.redis-headless:6379
+          - redis-2.redis-headless:6379
+          - redis-3.redis-headless:6379
+          - redis-4.redis-headless:6379
+          - redis-5.redis-headless:6379
+          - --cluster-replicas 1
+      restartPolicy: Never
+  backoffLimit: 4
+

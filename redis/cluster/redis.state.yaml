@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  replicas: 6
+  serviceName: redis-headless
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      name: redis
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7.4.0-alpine
+        imagePullPolicy: IfNotPresent
+        command: ["redis-server", "/etc/redis/redis.conf"]
+        volumeMounts:
+        - mountPath: /etc/redis
+          name: processed-config
+        ports:
+        - containerPort: 6379
+          protocol: TCP
+        - containerPort: 16379
+          protocol: TCP
+      restartPolicy: Always
+      initContainers:
+      - name: init-config
+        image: dibi/envsubst
+        volumeMounts:
+        - name: processed-config
+          mountPath: /processed
+        - name: redis-conf
+          mountPath: /workdir
+        env:
+        - name: CLUSTER_ANNOUNCE_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+      volumes:
+      - name: redis-conf
+        configMap:
+          name: redis-conf
+      - name: processed-config
+        emptyDir: {}

@@ -1,0 +1,14 @@
+{
+  "name": "client",
+  "packageManager": "yarn@4.4.0",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ioredis": "^5.4.1",
+    "redis": "^4.7.0"
+  }
+}

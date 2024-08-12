@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-replication-2
+  labels:
+    app: redis-replication-2
+spec:
+  containers:
+  - name: redis-replication
+    image: redis:7.4.0-alpine
+    command: ["redis-server", "/etc/redis/replica.conf"]
+    volumeMounts:
+    - name: replica-conf
+      mountPath: /etc/redis
+      readOnly: false
+    ports:
+    - containerPort: 6379
+
+  - name: redis-sentinel-replication
+    image: redis:7.4.0-alpine
+    command: ["redis-sentinel", "/etc/redis/sentinel.conf"]
+    volumeMounts:
+    - name: processed-config
+      mountPath: /etc/redis
+    ports:
+    - containerPort: 26379
+
+  initContainers:
+  - name: init-config
+    image: dibi/envsubst
+    volumeMounts:
+    - name: processed-config
+      mountPath: /processed
+    - name: sentinel-conf
+      mountPath: /workdir
+    env:
+    - name: POD_IP
+      valueFrom:
+        fieldRef:
+          fieldPath: status.podIP
+
+  volumes:
+  - name: replica-conf
+    configMap:
+      name: replica-conf
+      defaultMode: 0644
+  - name: sentinel-conf
+    configMap:
+      name: sentinel-conf
+  - name: processed-config
+    emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-replication-2
+spec:
+  selector:
+    app: redis-replication-2
+  type: ClusterIP
+  ports:
+  - name: redis
+    port: 6379
+    targetPort: 6379
+  - name: sentinel
+    port: 26379
+    targetPort: 26379
