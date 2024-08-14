@@ -1,0 +1,39 @@
+# https://www.rabbitmq.com/kubernetes/operator/using-operator
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: rabbit-cluster-sample
+spec:
+  replicas: 2
+  image: rabbitmq:3.10.7-management
+  service:
+    type: ClusterIP
+  persistence:
+    storageClassName: standard
+    storage: 1Gi
+  resources:
+    requests:
+      cpu: 1000m
+      memory: 2Gi
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+  terminationGracePeriodSeconds: 600
+  rabbitmq:
+    additionalConfig: |
+      management.load_definitions = /etc/rabbitmq/definitions.json
+  override:
+    statefulSet:
+      spec:
+        template:
+          spec:
+            containers:
+            - name: rabbitmq
+              volumeMounts:
+              - mountPath: /etc/rabbitmq/definitions.json
+                subPath: definitions.json
+                name: definitions
+            volumes:
+            - name: definitions
+              configMap:
+                name: definitions

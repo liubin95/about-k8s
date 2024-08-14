@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "name": "root",
+      "password_hash": "xe9yfMMi2EOz/BlrWiRldoduABFBENjfdy+OrWtMrqZl0Car", // alphabets
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "root",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "queues": [
+    {
+      "name": "qq1",
+      "vhost": "/",
+      "durable": true,
+      "auto_delete": false,
+      "arguments": {
+        "x-queue-type": "quorum"
+      }
+    }
+  ]
+}

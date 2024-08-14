@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rabbit-client
+  labels:
+    role: rabbit-client
+spec:
+  containers:
+  - name: sender
+    image: rabbit-client:v1.0.0
+    args: ["send"]
+    env:
+    - name: RABBITMQ_HOST
+      value: rabbit-cluster-sample
+    - name: RABBITMQ_PORT
+      value: "5672"
+    - name: RABBITMQ_USER
+      value: root
+    - name: RABBITMQ_PASS
+      value: alphabets
+    - name: RABBITMQ_QUEUE
+      value: qq1
+
+  - name: receiver
+    image: rabbit-client:v1.0.0
+    args: ["receive"]
+    env:
+    - name: RABBITMQ_HOST
+      value: rabbit-cluster-sample
+    - name: RABBITMQ_PORT
+      value: "5672"
+    - name: RABBITMQ_USER
+      value: root
+    - name: RABBITMQ_PASS
+      value: alphabets
+    - name: RABBITMQ_QUEUE
+      value: qq1
