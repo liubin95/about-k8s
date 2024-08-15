@@ -11,6 +11,7 @@ minikube completion zsh > _minikube
 # 启动集群
 minikube start --kubernetes-version=v1.27.3
 # op  网络插件
+# https://minikube.sigs.k8s.io/docs/handbook/network_policy/
 minikube start --network-plugin=cni --cni=calico
 # 查看集群信息
 minikube status
