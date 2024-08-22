@@ -1,3 +1,4 @@
+# https://hub.docker.com/r/nicolaka/netshoot
 apiVersion: v1
 kind: Pod
 metadata:
@@ -5,5 +6,5 @@ metadata:
 spec:
   containers:
   - name: netshoot
-    image: nicolaka/netshoot:latest
+    image: docker.io/nicolaka/netshoot:latest
     command: ["sleep", "3600"]
