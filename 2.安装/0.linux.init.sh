@@ -51,11 +51,14 @@ install -m 755 runc.amd64 /usr/local/sbin/runc
 echo -e "\033[32m runc deno \033[0m"
 
 # cni 插件
-CNI_VERSION=1.5.0
-mkdir -p /opt/cni/bin
-curl -OL https://github.com/containernetworking/plugins/releases/download/v${CNI_VERSION}/cni-plugins-${OS}-${ARCH}-v${CNI_VERSION}.tgz
-tar Cxzvf /opt/cni/bin cni-plugins-${OS}-${ARCH}-v${CNI_VERSION}.tgz
-echo -e "\033[32m cni deno \033[0m"
+# FAQ: For Kubernetes, do I need to download cri-containerd-(cni-)<VERSION>-<OS-<ARCH>.tar.gz too?
+# Answer: No.
+# As the Kubernetes CRI feature has been already included in containerd-<VERSION>-<OS>-<ARCH>.tar.gz, you do not need to download the cri-containerd-.... archives to use CRI.
+#CNI_VERSION=1.5.0
+#mkdir -p /opt/cni/bin
+#curl -OL https://github.com/containernetworking/plugins/releases/download/v${CNI_VERSION}/cni-plugins-${OS}-${ARCH}-v${CNI_VERSION}.tgz
+#tar Cxzvf /opt/cni/bin cni-plugins-${OS}-${ARCH}-v${CNI_VERSION}.tgz
+#echo -e "\033[32m cni deno \033[0m"
 
 # 配置 containerd
 mkdir -p /etc/containerd
